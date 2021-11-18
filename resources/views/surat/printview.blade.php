@@ -12,7 +12,7 @@
 
     #table-list th,
     #table-list td {
-      padding: 3px 7px;
+      padding: 5px 9px;
       border-color: #000;
     }
   </style>
@@ -48,7 +48,7 @@
     <tbody>
       @foreach ($data as $key => $v)
       <tr>
-        <td class="text-center">{{ $key+1 }}</td>
+        <td class="text-center">{{ $key+1 }}.</td>
         @if (count($jenis_surat)>1)
         <td>{{ $v->jenis_surat->name }}</td>
         @endif
