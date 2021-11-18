@@ -15,6 +15,10 @@
       padding: 5px 9px;
       border-color: #000;
     }
+
+    #table-list th {
+      background-color: #bbbbbb;
+    }
   </style>
 </head>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisSurat;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -40,7 +41,8 @@ class UserController extends BaseController
 	public function home()
 	{
 		return view('home', [
-			'title' => 'Beranda'
+			'title' => 'Beranda',
+			'jenis_surat' => JenisSurat::all()
 		]);
 	}
 
