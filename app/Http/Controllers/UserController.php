@@ -59,9 +59,6 @@ class UserController extends BaseController
 	public function logoutProcess()
 	{
 		if (request()->ajax()) {
-			$user = auth()->user();
-			$user->_token = null;
-			$user->save();
 			auth()->logout();
 			return response()->json(['message' => 'Anda berhasil keluar!<br>Mengarahkan ke halaman login ...', 'redirect' => route('login'), 'timeout' => 500]);
 		}
