@@ -11,7 +11,7 @@
 <div class="card">
   <div class="card-header">
     <a href="#" data-url="{{ route('user.create') }}" class="btn bg-olive open-modal">Tambah
-      Data</a>
+      User</a>
   </div>
   <div class="card-body">
     <table class="table-list table table-hover table-striped" data-url="{{ route('user.index') }}"

@@ -42,7 +42,7 @@ class UserController extends BaseController
 	{
 		return view('home', [
 			'title' => 'Beranda',
-			'jenis_surat' => JenisSurat::all()
+			'jenis_surat' => JenisSurat::all(),
 		]);
 	}
 

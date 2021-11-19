@@ -12,7 +12,7 @@
 <div class="card">
   <div class="card-header">
     <a href="#" data-url="{{ route('surat.create') }}" class="btn bg-olive open-modal">Tambah
-      Data</a>
+      Surat</a>
     <a href="#" data-url="{{ route('surat.print') }}" class="btn bg-danger open-modal"><i
         class="fas fa-file-pdf fa-fw"></i> Cetak Arsip Surat</a>
   </div>
