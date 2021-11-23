@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="{{ asset('css/styles.min.css') }}">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed dark-mode accent-olive">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed dark-mode">
   <div class="wrapper">
     @include('layouts.navbar')
     @include('layouts.sidebar')
