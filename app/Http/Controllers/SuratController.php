@@ -22,7 +22,7 @@ class SuratController extends Controller
 			'png',
 			'pdf',
 		];
-		$this->max_size = 1000000;
+		$this->max_size = 1024000;
 	}
 
 	public function index()
@@ -328,34 +328,34 @@ class SuratController extends Controller
 			'tanggal.required' => 'Rentang tanggal harus dipilih',
 		]);
 
-		// try {
-		$tgl = explode(' s.d. ', $request->tanggal);
-		$start = Carbon::createFromFormat('d-m-Y', $tgl[0]);
-		$end = Carbon::createFromFormat('d-m-Y', $tgl[1]);
+		try {
+			$tgl = explode(' s.d. ', $request->tanggal);
+			$start = Carbon::createFromFormat('d-m-Y', $tgl[0]);
+			$end = Carbon::createFromFormat('d-m-Y', $tgl[1]);
 
-		$surat = Surat::whereIn('jenis_surat_id', $request->jenis_surat)
-			->where('tanggal', '>=', $start->startOfDay())
-			->where('tanggal', '<=', $end->endOfDay())
-			->with('jenis_surat')
-			->orderBy('tanggal', 'asc')
-			->get();
+			$surat = Surat::whereIn('jenis_surat_id', $request->jenis_surat)
+				->where('tanggal', '>=', $start->startOfDay())
+				->where('tanggal', '<=', $end->endOfDay())
+				->with('jenis_surat')
+				->orderBy('tanggal', 'asc')
+				->get();
 
-		$tgls = $start->toDateString() == $end->toDateString() ? $start->format('d-m-y') : $start->format('d-m-Y') . ' s.d. ' . $end->format('d-m-Y');
+			$tgls = $start->toDateString() == $end->toDateString() ? $start->format('d-m-y') : $start->format('d-m-Y') . ' s.d. ' . $end->format('d-m-Y');
 
-		if (count($surat)) {
-			$data = [
-				'title' => 'Arsip Surat ' . $tgls,
-				'start' => $start,
-				'end' => $end,
-				'jenis_surat' => $request->jenis_surat,
-				'data' => $surat,
-			];
-			$pdf = Pdf::loadView('surat.printview', $data);
-			return $pdf->stream($data['title'] . '.pdf');
+			if (count($surat)) {
+				$data = [
+					'title' => 'Arsip Surat ' . $tgls,
+					'start' => $start,
+					'end' => $end,
+					'jenis_surat' => $request->jenis_surat,
+					'data' => $surat,
+				];
+				$pdf = Pdf::loadView('surat.printview', $data);
+				return $pdf->stream($data['title'] . '.pdf');
+			}
+			return redirect()->back()->withErrors('Tidak ada arsip surat');
+		} catch (\Throwable $th) {
+			return redirect()->back()->withErrors('Tidak dapat memproses data');
 		}
-		return redirect()->back()->withErrors('Tidak ada arsip surat');
-		// } catch (\Throwable $th) {
-		// 	return redirect()->back()->withErrors('Tidak dapat memproses data');
-		// }
 	}
 }
