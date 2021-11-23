@@ -319,12 +319,12 @@ class SuratController extends Controller
 	public function printProcess(Request $request)
 	{
 		$request->validate([
-			'jenis_surat' => 'required|array|min:1',
+			// 'jenis_surat' => 'required|array|min:1',
 			'tanggal' => 'required'
 		], [
-			'jenis_surat.required' => 'Jenis surat harus dipilih',
-			'jenis_surat.array' => 'Jenis surat tidak dikenal',
-			'jenis_surat.min' => 'Jenis surat tidak dikenal',
+			// 'jenis_surat.required' => 'Jenis surat harus dipilih',
+			// 'jenis_surat.array' => 'Jenis surat tidak dikenal',
+			// 'jenis_surat.min' => 'Jenis surat tidak dikenal',
 			'tanggal.required' => 'Rentang tanggal harus dipilih',
 		]);
 
@@ -333,7 +333,9 @@ class SuratController extends Controller
 			$start = Carbon::createFromFormat('d-m-Y', $tgl[0]);
 			$end = Carbon::createFromFormat('d-m-Y', $tgl[1]);
 
-			$surat = Surat::whereIn('jenis_surat_id', $request->jenis_surat)
+			$surat = Surat::when((is_array($request->jenis_surat) && count($request->jenis_surat)), function ($q, $role) use ($request) {
+				$q->whereIn('jenis_surat_id', $request->jenis_surat);
+			})
 				->where('tanggal', '>=', $start->startOfDay())
 				->where('tanggal', '<=', $end->endOfDay())
 				->with('jenis_surat')
@@ -347,7 +349,7 @@ class SuratController extends Controller
 					'title' => 'Arsip Surat ' . $tgls,
 					'start' => $start,
 					'end' => $end,
-					'jenis_surat' => $request->jenis_surat,
+					'jenis_surat' => is_array($request->jenis_surat) && count($request->jenis_surat) ? $request->jenis_surat : [],
 					'data' => $surat,
 				];
 				$pdf = Pdf::loadView('surat.printview', $data);

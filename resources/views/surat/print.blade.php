@@ -3,7 +3,7 @@
   <div class="form-group text-left">
     <label for="iname">Jenis Surat</label>
     <select name="jenis_surat[]" class="select2 form-control" data-placeholder="Pilih Jenis Surat" allow-clear="false"
-      id="jenis-surat" multiple required>
+      id="jenis-surat" multiple>
       <option value="">Pilih Jenis Surat</option>
       @foreach ($jenis_surat as $v)
       <option data-kode-depan="{{ $v->kode_depan }}" data-kode-belakang="{{ $v->kode_belakang }}" {{ @$data->

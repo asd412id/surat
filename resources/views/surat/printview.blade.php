@@ -16,6 +16,10 @@
       border-color: #000;
     }
 
+    #table-list td {
+      vertical-align: top;
+    }
+
     #table-list th {
       background-color: #bbbbbb;
     }
@@ -40,7 +44,7 @@
     <thead>
       <tr>
         <th class="text-center">No.</th>
-        @if (count($jenis_surat)>1)
+        @if (count($jenis_surat)>1 || !count($jenis_surat))
         <th class="text-center">Jenis Surat</th>
         @endif
         <th class="text-center">Tanggal</th>
@@ -53,7 +57,7 @@
       @foreach ($data as $key => $v)
       <tr>
         <td class="text-center">{{ $key+1 }}.</td>
-        @if (count($jenis_surat)>1)
+        @if (count($jenis_surat)>1 || !count($jenis_surat))
         <td>{{ $v->jenis_surat->name }}</td>
         @endif
         <td>{{ $v->tanggal }}</td>
