@@ -28,7 +28,7 @@
   </div>
   <div class="card-body">
     <table class="table-list table table-hover table-striped" data-url="{{ route('surat.index') }}"
-      data-cols="action!order|search,tanggal,nomor,perihal,jenis_surat.name,user.name">
+      data-cols="action!order|search,tanggal,nomor,perihal,jenis_surat.name,user.name,opt!visible|order">
       <thead>
         <tr>
           <th>#</th>

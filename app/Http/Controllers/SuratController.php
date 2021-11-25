@@ -139,7 +139,10 @@ class SuratController extends Controller
 			$insert->file = $file;
 			$insert->file_type = $file_type;
 			$insert->perihal = $request->perihal;
-			$insert->opt = ['desc' => $request->desc];
+			$insert->opt = [
+				'desc' => $request->desc,
+				'tanggal' => $request->tanggal,
+			];
 
 			if ($insert->save()) {
 				return response()->json(['message' => 'Data berhasil disimpan']);
@@ -252,7 +255,10 @@ class SuratController extends Controller
 			$insert->file = $file;
 			$insert->file_type = $file_type;
 			$insert->perihal = $request->perihal;
-			$insert->opt = ['desc' => $request->desc];
+			$insert->opt = [
+				'desc' => $request->desc,
+				'tanggal' => $request->tanggal,
+			];
 
 			if ($insert->save()) {
 				return response()->json(['message' => 'Data berhasil disimpan']);
