@@ -354,7 +354,9 @@ class SuratController extends Controller
 					'jenis_surat' => is_array($request->jenis_surat) && count($request->jenis_surat) ? $request->jenis_surat : [],
 					'data' => $surat,
 				];
-				$pdf = Pdf::loadView('surat.printview', $data);
+				$pdf = Pdf::loadView('surat.printview', $data, [], [
+					'orientation' => 'l'
+				]);
 				return $pdf->stream($data['title'] . '.pdf');
 			}
 			return redirect()->back()->withErrors('Tidak ada arsip surat');

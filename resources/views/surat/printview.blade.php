@@ -6,6 +6,11 @@
   <title>{{ $title }}</title>
   @include('style')
   <style>
+    html,
+    body {
+      font-size: 1em;
+    }
+
     @page {
       margin: 20px 35px;
     }
@@ -22,6 +27,7 @@
 
     #table-list th {
       background-color: #bbbbbb;
+      padding: 10px 9px;
     }
   </style>
 </head>
@@ -29,7 +35,7 @@
 <body>
   <table class="table">
     <tr>
-      <td class="text-right">
+      <td class="text-left">
         <h4>{{ count($jenis_surat)==1?'Arsip '.$data[0]->jenis_surat->name:'Arsip Surat' }}</h4>
         <h3>{{ env('INS_NAME','UPTD SMPN 39 SINJAI') }}</h3>
         <h5>Tanggal: {{ $start->toDateString() == $end->toDateString()?$start->translatedFormat('j F
