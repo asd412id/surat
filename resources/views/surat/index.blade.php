@@ -10,11 +10,21 @@
 @endsection
 @section('content')
 <div class="card">
-  <div class="card-header">
+  <div class="card-header text-center text-md-left">
     <a href="#" data-url="{{ route('surat.create') }}" class="btn bg-olive open-modal">Tambah
       Surat</a>
     <a href="#" data-url="{{ route('surat.print') }}" class="btn bg-danger open-modal"><i
         class="fas fa-file-pdf fa-fw"></i> Cetak Arsip Surat</a>
+    @if (count($jenis_surat))
+    <div class="float-md-right mt-2 mt-md-0">
+      <select id="suratid" class="form-control" data-query="{{ request()->jenis ??''}}">
+        <option value="">Semua Jenis Surat</option>
+        @foreach ($jenis_surat as $v)
+        <option value="{{ $v->name }}">{{ $v->name }}</option>
+        @endforeach
+      </select>
+    </div>
+    @endif
   </div>
   <div class="card-body">
     <table class="table-list table table-hover table-striped" data-url="{{ route('surat.index') }}"

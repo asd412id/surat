@@ -54,7 +54,9 @@ class SuratController extends Controller
 				->rawColumns(['action'])
 				->make(true);
 		}
+		$jenis_surat = JenisSurat::all();
 		$data = [
+			'jenis_surat' => $jenis_surat,
 			'title' => 'Surat'
 		];
 		return view('surat.index', $data);

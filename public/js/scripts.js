@@ -97,6 +97,7 @@ $(function () {
     });
   }
   var slect2 = [];
+  var _jsl = false;
   var init = (table_list = null) => {
     if (slect2.length > 0) {
       slect2.forEach((v, i) => {
@@ -220,6 +221,18 @@ $(function () {
           $("#kode-belakang span").empty();
         }
       });
+    }
+    if ($("#suratid").length > 0 && table_list != null) {
+      $("#suratid").off().on("change", function () {
+        var _sv = $(this).val();
+        table_list.search(_sv).draw();
+      });
+      if (!_jsl) {
+        _jsl = true;
+        setTimeout(() => {
+          $("#suratid").val($("#suratid").data('query')).trigger('change');
+        }, 10);
+      }
     }
   }
   init(table_list);

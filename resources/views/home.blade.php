@@ -29,7 +29,7 @@
       <div class="icon">
         <i class="fa fa-envelope-open" aria-hidden="true"></i>
       </div>
-      <a href="{{ route('surat.index') }}" class="small-box-footer">
+      <a href="{{ route('surat.index',['jenis'=>$v->name]) }}" class="small-box-footer">
         Lihat <i class="fas fa-arrow-circle-right"></i>
       </a>
     </div>
