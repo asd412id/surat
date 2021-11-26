@@ -69,7 +69,7 @@
         <td>{{ $v->tanggal }}</td>
         <td>{{ $v->nomor }}</td>
         <td>{{ $v->perihal }}</td>
-        <td>{{ @$v->opt->desc }}</td>
+        <td>{!! @$v->opt->desc?nl2br($v->opt->desc):'' !!}</td>
       </tr>
       @endforeach
     </tbody>

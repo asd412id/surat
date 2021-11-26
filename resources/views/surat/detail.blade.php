@@ -20,7 +20,7 @@
         <div class="description-block">
           <h5 class="description-header">Keterangan Surat</h5>
           <span class="description-text">
-            {{ @$data->opt->desc??'-' }}
+            {!! @$data->opt->desc?nl2br(@$data->opt->desc):'-' !!}
           </span>
         </div>
       </div>
