@@ -32,7 +32,7 @@
           </span>
         </div>
       </div>
-      <div class="col-12">
+      <div class="col-12 text-center">
         @if ($data->file)
         @if (in_array($data->file_type,['jpg','jpeg','png']))
         <img src="{{ route('surat.download',['surat'=>$data]) }}" alt="" class="img-thumbnail rounded img-fluid mt-2">
