@@ -99,6 +99,10 @@ $(function () {
   var slect2 = [];
   var _jsl = false;
   var init = (table_list = null) => {
+    $(".modal-dialog").draggable({
+      cursor: "move",
+      handle: ".modal-header,.modal-body",
+    });
     if (slect2.length > 0) {
       slect2.forEach((v, i) => {
         v.select2('destroy');
