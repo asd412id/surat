@@ -22,7 +22,7 @@ class SuratController extends Controller
 			'png',
 			'pdf',
 		];
-		$this->max_size = 1024000;
+		$this->max_size = 2 * 1024 * 1024;
 	}
 
 	public function index()
@@ -119,7 +119,7 @@ class SuratController extends Controller
 					return response()->json(['message' => 'File surat harus berupa file gambar atau pdf'], 406);
 				}
 				if ($request->file->getSize() > $this->max_size) {
-					return response()->json(['message' => 'Ukuran file surat maksimal 1MB'], 406);
+					return response()->json(['message' => 'Ukuran file surat maksimal 2MB'], 406);
 				}
 				if (!Storage::disk('local')->exists('upload')) {
 					Storage::disk('local')->makeDirectory('upload');
@@ -234,7 +234,7 @@ class SuratController extends Controller
 					return response()->json(['message' => 'File surat harus berupa file gambar atau pdf'], 406);
 				}
 				if ($request->file->getSize() > $this->max_size) {
-					return response()->json(['message' => 'Ukuran file surat maksimal 1MB'], 406);
+					return response()->json(['message' => 'Ukuran file surat maksimal 2MB'], 406);
 				}
 				if (!Storage::disk('local')->exists('upload')) {
 					Storage::disk('local')->makeDirectory('upload');
