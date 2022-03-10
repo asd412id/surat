@@ -33,7 +33,8 @@ class SearchController extends Controller
 				$result = Surat::where('kode_depan', $jenis_surat
 					->kode_depan)
 					->where('kode_belakang', $jenis_surat->kode_belakang)
-					->orderBy('tanggal', 'desc')->first();
+					->orderByRaw('DATE(tanggal) DESC')
+					->orderBy('urutan', 'desc')->first();
 				if ($result) {
 					$no = str_pad(((int) $result->urutan) + 1, 3, '0', STR_PAD_LEFT);
 					return response()->json([

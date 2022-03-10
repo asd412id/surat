@@ -206,14 +206,15 @@ $(function () {
         if (_kode_depan != undefined && _kode_depan != null && _kode_depan != '') {
           $("#kode-depan").removeClass('d-none');
           $("#kode-depan span").text(_kode_depan);
-          if (_this.closest('form').find('#inomor').val() == '') {
-            $.get('/search/nomor', { jenis: _this.val() }, function (res) {
-              _this.closest('form').find('#inomor').val(res.nomor);
-            }, 'json').fail(function () {
-              _this.closest('form').find('#inomor').val(1);
-            });
-          }
+          // if (_this.closest('form').find('#inomor').val() == '') {
+          $.get('/search/nomor', { jenis: _this.val() }, function (res) {
+            _this.closest('form').find('#inomor').val(res.nomor);
+          }, 'json').fail(function () {
+            _this.closest('form').find('#inomor').val(1);
+          });
+          // }
         } else {
+          _this.closest('form').find('#inomor').val('');
           $("#kode-depan").addClass('d-none');
           $("#kode-depan span").empty();
         }
@@ -221,6 +222,7 @@ $(function () {
           $("#kode-belakang").removeClass('d-none');
           $("#kode-belakang span").text(_kode_belakang);
         } else {
+          _this.closest('form').find('#inomor').val('');
           $("#kode-belakang").addClass('d-none');
           $("#kode-belakang span").empty();
         }

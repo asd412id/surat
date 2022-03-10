@@ -32,6 +32,19 @@ class SuratController extends Controller
 				->with('jenis_surat')
 				->with('user')
 				->select('surats.*');
+			if (request()->order[0]['column'] == 0 && request()->order[0]['dir'] == 'asc') {
+				$data->orderByRaw('DATE(tanggal) DESC')
+					->orderBy('urutan', 'desc');
+			}
+			if (request()->order[0]['column'] == 1) {
+				$data->orderByRaw('DATE(tanggal) ' . request()->order[0]['dir'])
+					->orderBy('urutan', request()->order[0]['dir']);
+			}
+			if (request()->order[0]['column'] == 2) {
+				$data->orderBy('kode_depan', request()->order[0]['dir'])
+					->orderBy('kode_belakang', request()->order[0]['dir'])
+					->orderBy('urutan', request()->order[0]['dir']);
+			}
 			return DataTables::of($data)
 				->addColumn('action', function ($row) {
 
